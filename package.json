@@ -9,7 +9,10 @@
     "stringify",
     "hyron-plugins"
   ],
-  "repository": "github:hyron-group/plugins-stringer",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/hyron-group/plugins-stringer"
+  },
   "license": "ISC",
   "main": "index.js",
   "name": "@hyron/stringer",
