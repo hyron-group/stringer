@@ -4,11 +4,12 @@
   },
   "bundleDependencies": false,
   "deprecated": false,
-  "description": "a simple fontware for hyron framework to  separate static string from project",
+  "description": "Help separate the string from code for ease of management and maintenance",
   "keywords": [
-    "hyron-plugins",
-    "fontware"
+    "stringify",
+    "hyron-plugins"
   ],
+  "repository": "github:hyron-group/plugins-stringer",
   "license": "ISC",
   "main": "index.js",
   "name": "@hyron/stringer",
