@@ -22,49 +22,71 @@ another_content
 -   Support bind var or load another var
 -   Support for comment with syntax : '// comment content'
 -   Support for another app
--   Support for [Hyron Framework](https://www.npmjs.com/package/hyron) by default
+-   Support for [Hyron Framework](https://www.npmjs.com/package/hyron) by as a global fontware plugins
 
 # Usage
 
+## **Step 1 : Install**
+
+With **NPM** :
 > ## npm i @hyron/stringer
 
-## **Note** : If used for other app
+With **YARN** :
+> ## yarn add @hyron/stringer
 
-stringer can be used by another app if you want now
+## **Step 2 : Declare string values**
 
-```js
-const Stringer = require("@hyron/tringer");
+By default, hyron will load string from ``strings`` dir with file extendsion is `.str`. And file name you should to used language code with 2 character.
 
-var instance = new Stringer();
-console.log("\nresult : \n" + instance.get("var_2", { name: "default var" }));
-```
+Besides, stringer also needs to declare the file **default.str** to used. The variable in this file will be loaded automatically at runtime, or if the language is incorrectly set
 
-## If used as hyron fontware
+Stringer also support for multi language, you could used it for store translate value inside
 
-After install, hyron will auto detect and load string file from ./strings directory
-
-You should separate string into many files with name is language code. example :
 
 ```
-strings
+./strings
   ├── default.str
   ├── en.str
   ├── fr.str
   ...
 ```
 
+## **Step 3 : Use stringer**
+
+Stringer can be used by another app if you want like another library
+
+```js
+const Stringer = require("@hyron/stringer");
+
+var stringer = new Stringer();
+
+var printMe = stringer.get("print_my_name", {
+    myName : "thangdjw"
+})
+
+console.log(printMe);
+```
+
+### **If used from [Hyron framework](https://www.npmjs.com/package/hyron)**
+
+> ### **stringer** is a ``fontware`` used to load strings from the 'this' variable.
+
+With the hyron framework, you don't need to declare to use.
+
+After install, Hyron will auto detect and load string file from ./strings directory, and you can used stringer in every service declared
+
 To get string, used follow syntax
 
 ```js
 your_method(){
-    // ... do something
-    var appName = this.$stringer.get('app_name');
+    // do something useful
+    var appName = this.$stringer.get('key_name');
 }
 ```
 
 # API Referenced
 
-> ## **setLanguage**( lang ) : void
+> ## **setLanguage** ( lang ) : void
 
 Set language default. if lang is null, string will read from default.json file. else, it will read from [lang].str
 
@@ -72,9 +94,9 @@ Set language default. if lang is null, string will read from default.json file. 
 
 - **lang** ( string ) : language code, it should be 2 digits. Example : en -> english, vi -> vietnamese. This code need coincides with the declared file in the strings directory
 
-> ## **set**( key, val, lang? ) : string
+> ## **set** ( key, val, lang? ) : void
 
-set string as temporary
+set string like temporary in runtime
 
 ### **params**
 
@@ -84,24 +106,34 @@ set string as temporary
 
 > ## **get** ( key, args? ) : string
 
+
+Fill source string by target string.
+
+Stringer support internal reference represent with syntax : <#[abort-key-name]()>.
+
+- To **Uppercase** string, used followed by '+' char ( <#[abort-key-name]()+> )
+- To **Lowercase** string, used follow by '-' char ( <#[abort-key-name]()-> )
+
+Stringer support external reference represent with syntax : <?[var-name]()>. Stringer will replaced this by args.var_name with this method
+
 ### param :
 
 -   **key** ( string ) : string args key name
 -   **args** ( object - option ) : argument to fill to string
--   
 
-Fill source string by target string. represent by ref <#[key]()>.
-if ref followed by '+' ( <#[key]()+> ), string replaced will become uppercase.
+### **return**
 
-If ref followed by '-' ( <#[key]()-> ), string replaced will become lowercase.
+- **string** : a string that have been filled by args
 
-If ref is <?[var_name]()> then it will replaced by args.var_name
+
+# Example
+
 example :
 ./strings/default.str
 
 ```
 ---webside---
-http://hyron.com
+http:\/\/hyron.com
 
 // used to send to user
 ---email_content---
