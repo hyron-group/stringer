@@ -15,7 +15,7 @@
   "scripts": {
     "test": "nodemon --exec mocha -R min"
   },
-  "version": "1.3.3",
+  "version": "1.3.4",
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
