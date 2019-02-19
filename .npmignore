@@ -1,0 +1,4 @@
+strings/
+test/
+node_modules/
+yaml.lock
