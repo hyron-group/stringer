@@ -47,9 +47,10 @@ You should separate string into many files with name is language code. example :
 
 ```
 strings
-    |----- default.str
-    |----- en.str
-    |----- fr.str
+  ├── default.str
+  ├── en.str
+  ├── fr.str
+  ...
 ```
 
 To get string, used follow syntax
@@ -61,30 +62,40 @@ your_method(){
 }
 ```
 
-# Document
+# API Referenced
 
-> ## this.\$stringer.setLanguage( lang ) : void
+> ## **setLanguage**( lang ) : void
 
-Set language instance. if lang is null, string will read from default.json file. else, it will read from [lang].str
+Set language default. if lang is null, string will read from default.json file. else, it will read from [lang].str
 
-> ## this.\$stringer.set( key, val, ?lang ) : string
+### **params**
+
+- **lang** ( string ) : language code, it should be 2 digits. Example : en -> english, vi -> vietnamese. This code need coincides with the declared file in the strings directory
+
+> ## **set**( key, val, lang? ) : string
 
 set string as temporary
 
-> ## this.\$stringer.get( source, args ) : string
+### **params**
 
-param :
+- **key** ( string ) : string key, declared in .``str`` file
+- **val** ( object ) : parameters passed in string value
+- **lang** ( string ) : language code, declared in ``strings`` file
 
--   **source** (string) : string args key name
--   **args** (object|null) : argument to fill to string
+> ## **get** ( key, args? ) : string
 
-fill source string by target string. represent by ref <#[key]()>.
+### param :
 
-if ref followed by '+' (<#[key]()+>), string replaced will become uppercase.
+-   **key** ( string ) : string args key name
+-   **args** ( object - option ) : argument to fill to string
+-   
 
-if ref followed by '-' (<#[key]()->), string replaced will become lowercase.
+Fill source string by target string. represent by ref <#[key]()>.
+if ref followed by '+' ( <#[key]()+> ), string replaced will become uppercase.
 
-if ref is <?[var_name]()> then it will replaced by args.var_name
+If ref followed by '-' ( <#[key]()-> ), string replaced will become lowercase.
+
+If ref is <?[var_name]()> then it will replaced by args.var_name
 example :
 ./strings/default.str
 
