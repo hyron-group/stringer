@@ -1,7 +1,9 @@
 # Stringer
 
-Stringer is lightweight fontware, used to separate string into string file (.str).
+Stringer is a lightweight _Hyron framework fontware_, used to separate string into string file (.str).
 It makes your source code cleaner, reusable in many files, and supports multiple languages.
+
+It could also be used as a standalone library.
 
 ## Syntax
 
@@ -109,10 +111,10 @@ Temporarily set string in runtime. The original file is left intact.
 
 Fill source string by target string.
 
-Stringer support internal reference represent with syntax: `#[abort-key-name]()`.
+Stringer support internal reference represent with syntax: `<#[abort-key-name]()>`.
 
-- To **UPPERCASE** string, postfix it by a '+' character: `#[abort-key-name]()+`.
-- To **lowercase** string, postfix it by a '-' character: `#[abort-key-name]()-`.
+- To **UPPERCASE** string, postfix it by a '+' character: `<#[abort-key-name]()+>`.
+- To **lowercase** string, postfix it by a '-' character: `<#[abort-key-name]()->`.
 
 Stringer support external reference represent with syntax : `?[var-name]()`. Stringer will replaced this by `args.var_name` with this method.
 
