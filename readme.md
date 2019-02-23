@@ -16,13 +16,12 @@ another_content
 
 ## Feature
 
-- Human read-able syntax
-- Key - Value base
-- Optimized for storage string text in file
-- Support bind var or load another var
-- Support for comment with syntax : '// comment content'
-- Support for another app
-- Support for [Hyron Framework](https://www.npmjs.com/package/hyron) by as a global fontware plugins
+- Human read-able syntax.
+- Key - value based.
+- Optimized for storing string in text files.
+- Support bind var or load another var.
+- Support comment with syntax: **// comment content**.
+- Support [Hyron Framework](https://www.npmjs.com/package/hyron) as a global fontware plugins.
 
 ## Usage
 
@@ -33,11 +32,13 @@ By **NPM**:
 ```shell
 npm i @hyron/stringer
 ```
+
 By **YARN**:
 
 ```shell
 yarn add @hyron/stringer
 ```
+
 ### Step 2: Declare string values
 
 By default, **stringer** will loads strings from files with **.str** extension in **./strings** directory. And you should use two characters of the language as the filename. _(e.g: vi.str)_
@@ -56,7 +57,7 @@ Beside, **stringer** also expects you to profile the fallback file **default.str
 
 ### Step 3: Use stringer
 
-**Stringer** can be used by another app if you want like another library
+**Stringer** can be used by any app like other libraries:
 
 ```js
 const Stringer = require("@hyron/stringer");
