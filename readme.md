@@ -29,10 +29,13 @@ another_content
 ## **Step 1 : Install**
 
 With **NPM** :
-> ## npm i @hyron/stringer
-
+```
+npm i @hyron/stringer
+```
 With **YARN** :
-> ## yarn add @hyron/stringer
+```
+yarn add @hyron/stringer
+```
 
 ## **Step 2 : Declare string values**
 
