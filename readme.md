@@ -1,9 +1,11 @@
-# Introduction
+# Stringer
 
-Stringer is lightweight fontware, used to separate string into string file (.str)
-It makes your source code cleaner, reusable in many files, and supports multiple languages
+Stringer is a lightweight _Hyron framework fontware_, used to separate string into string file (.str).
+It makes your source code cleaner, reusable in many files, and supports multiple languages.
 
-syntax :
+It could also be used as a standalone library.
+
+## Syntax
 
 ```
 // this is comment
@@ -14,34 +16,38 @@ string_content
 another_content
 ```
 
-# Feature
+## Feature
 
--   Human read-able syntax
--   Key - Value base
--   Optimized for storage string text in file
--   Support bind var or load another var
--   Support for comment with syntax : '// comment content'
--   Support for another app
--   Support for [Hyron Framework](https://www.npmjs.com/package/hyron) by as a global fontware plugins
+- Human read-able syntax.
+- Key - value based.
+- Optimized for storing string in text files.
+- Support bind var or load another var.
+- Support comment with syntax: **// comment content**.
+- Support [Hyron Framework](https://www.npmjs.com/package/hyron) as a global fontware plugins.
 
-# Usage
+## Usage
 
-## **Step 1 : Install**
+### Step 1: Installation
 
-With **NPM** :
-> ## npm i @hyron/stringer
+By **NPM**:
 
-With **YARN** :
-> ## yarn add @hyron/stringer
+```shell
+npm i @hyron/stringer
+```
 
-## **Step 2 : Declare string values**
+By **YARN**:
 
-By default, hyron will load string from ``strings`` dir with file extendsion is `.str`. And file name you should to used language code with 2 character.
+```shell
+yarn add @hyron/stringer
+```
 
-Besides, stringer also needs to declare the file **default.str** to used. The variable in this file will be loaded automatically at runtime, or if the language is incorrectly set
+### Step 2: Declare string values
 
-Stringer also support for multi language, you could used it for store translate value inside
+By default, **stringer** will loads strings from files with **.str** extension in **./strings** directory. And you should use two characters of the language as the filename. _(e.g: vi.str)_
 
+Beside, **stringer** also expects you to profile the fallback file **default.str**.
+
+**Stringer** also has multi languages support, you could use it to store translated strings. Here is an example of strings directory:
 
 ```
 ./strings
@@ -51,31 +57,28 @@ Stringer also support for multi language, you could used it for store translate 
   ...
 ```
 
-## **Step 3 : Use stringer**
+### Step 3: Use stringer
 
-Stringer can be used by another app if you want like another library
+**Stringer** can be used by any app like other libraries:
 
 ```js
 const Stringer = require("@hyron/stringer");
-
 var stringer = new Stringer();
-
 var printMe = stringer.get("print_my_name", {
     myName : "thangdjw"
-})
-
+});
 console.log(printMe);
+// TODO: Output here
 ```
 
-### **If used from [Hyron framework](https://www.npmjs.com/package/hyron)**
+### You are using [Hyron framework](https://www.npmjs.com/package/hyron)?
 
-> ### **stringer** is a ``fontware`` used to load strings from the 'this' variable.
+> **stringer** is a `fontware` used to load strings from the 'this' variable.
 
-With the hyron framework, you don't need to declare to use.
+With **Hyron framework**, you don't need to explicitly load it.
+After install, **Hyron framework** will tries to detect and loads string files from **./strings** directory, and you can used stringer in every declared services.
 
-After install, Hyron will auto detect and load string file from ./strings directory, and you can used stringer in every service declared
-
-To get string, used follow syntax
+To get string value, you can use follow syntax:
 
 ```js
 your_method(){
@@ -84,52 +87,49 @@ your_method(){
 }
 ```
 
-# API Referenced
+## API References
 
-> ## **setLanguage** ( lang ) : void
+#### .setLanguage(lang): void
 
-Set language default. if lang is null, string will read from default.json file. else, it will read from [lang].str
+Set default language. If lang is null, string will be read from **default.json** file. Otherwise, it will be read from **<lang>.str**
 
-### **params**
+**Parameters**
 
-- **lang** ( string ) : language code, it should be 2 digits. Example : en -> english, vi -> vietnamese. This code need coincides with the declared file in the strings directory
+- `lang` _(string)_: language code, it should be exactly two letters. Example: en -> english, vi -> vietnamese. You should ensure that the used language are well reclared in **./strings** directory. For more conventional, you should use country codes defined by *ISO 3166-1 alpha-2*.
 
-> ## **set** ( key, val, lang? ) : void
+#### .set(key, val, lang?): void
 
-set string like temporary in runtime
+Temporarily set string in runtime. The original file is left intact.
 
-### **params**
+**Parameters**
 
-- **key** ( string ) : string key, declared in .``str`` file
-- **val** ( object ) : parameters passed in string value
-- **lang** ( string ) : language code, declared in ``strings`` file
+- `key` _(string)_: string key, declared in `.str` file.
+- `val` _(object)_: parameters passed in string value.
+- `lang` _(string)_: language code, declared in string files.
 
-> ## **get** ( key, args? ) : string
-
+#### .get (key, args?): string
 
 Fill source string by target string.
 
-Stringer support internal reference represent with syntax : <#[abort-key-name]()>.
+Stringer support internal reference represent with syntax: `<#[abort-key-name]()>`.
 
-- To **Uppercase** string, used followed by '+' char ( <#[abort-key-name]()+> )
-- To **Lowercase** string, used follow by '-' char ( <#[abort-key-name]()-> )
+- To **UPPERCASE** string, postfix it by a '+' character: `<#[abort-key-name]()+>`.
+- To **lowercase** string, postfix it by a '-' character: `<#[abort-key-name]()->`.
 
-Stringer support external reference represent with syntax : <?[var-name]()>. Stringer will replaced this by args.var_name with this method
+Stringer support external reference represent with syntax : `?[var-name]()`. Stringer will replaced this by `args.var_name` with this method.
 
-### param :
+**Parameters**
 
--   **key** ( string ) : string args key name
--   **args** ( object - option ) : argument to fill to string
+- `key` _(string)_: string args key name.
+- `args` _(object)_: argument to fill into string.
 
-### **return**
+**Return value**
 
-- **string** : a string that have been filled by args
+- _string_: a string that have been filled by args
 
+## Examples
 
-# Example
-
-example :
-./strings/default.str
+Given **./strings/default.str** file:
 
 ```
 ---webside---
@@ -145,20 +145,22 @@ We will constantly improve the quality of our services, to bring satisfaction to
 <?signature>
 ```
 
-main.js
+In **main.js** you could use:
 
 ```js
 var message = this.$stringer.get("email_content", {
     signature: "THANGPHUNG",
     client_name: "Alex"
 });
-/*
-`Dear Alex
+```
+
+The output
+
+```
+Dear Alex
 
 Thank you because the registered service of our own at website http://hyron.com
 We will constantly improve the quality of our services, to bring satisfaction to you. Hope you like it
 
 THANGPHUNG
-`
-*/
 ```
