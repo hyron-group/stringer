@@ -729,10 +729,10 @@ http-deceiver@^1.2.7:
   resolved "https://registry.yarnpkg.com/http-deceiver/-/http-deceiver-1.2.7.tgz#fa7168944ab9a519d337cb0bec7284dc3e723d87"
   integrity sha1-+nFolEq5pRnTN8sL7HKE3D5yPYc=
 
-hyron@^2.5.8:
-  version "2.5.8"
-  resolved "https://registry.yarnpkg.com/hyron/-/hyron-2.5.8.tgz#44153c817912f8094986a6925e72efd589154452"
-  integrity sha512-ENk/wigpLtMjhwqmDFPm7kmdL9RdnEl8E6yDNlGBgH1Y7gRRG9nSaZj7geOiE6skIVzMZDHHUcDAA5NPbgqVfw==
+hyron@^2.6.2:
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/hyron/-/hyron-2.6.2.tgz#b25e3e2542f6dab0d0a94be04c408ef100416f82"
+  integrity sha512-KdUkj/pVNk171cREkvHyADAUH/Gkv0O5uE69awd+mY9927DD27Xkz67urNuOjO/vnEJL1zMFe+/dJm0wO6kn4Q==
   dependencies:
     busboy "^0.2.14"
     chalk "^2.4.2"

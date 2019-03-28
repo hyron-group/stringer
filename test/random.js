@@ -1,9 +1,9 @@
-const Stringer = require("@hyron/stringer");
+const Stringer = require("../");
 
 var stringer = new Stringer();
 
-var printMe = stringer.get("print_my_name", {
-    myName : "thangdjw"
+var printMe = stringer.get("var_2", {
+    name : "thangdjw"
 })
 
 console.log(printMe);

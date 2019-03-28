@@ -3,4 +3,4 @@ value insert : <?name>
 
 // This string used just for test
 ---var_2---
-self ref : <#var_1+>
+self ref : <#var_1>

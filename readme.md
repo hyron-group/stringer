@@ -12,7 +12,7 @@ It makes your source code cleaner, reusable in many files, and supports multiple
 - **Key** - **Value** based.
 - Optimized for storing string in text files.
 - Support bind var or load another var.
-- Support comment with syntax: **// comment content**.
+- Support comment with syntax: **# comment content**.
 - Support [Hyron Framework](https://www.npmjs.com/package/hyron) as a global fontware plugins.
 
 
@@ -23,7 +23,7 @@ This syntax is applied in the .str file, which helps you define strings in the f
 .str file support multi-line, single comment line reference internal and load external variables except by the syntax below
 
 ```
-// single comment line. it will be skip by compiler
+# single comment line. it will be skip by compiler
 
 ---key_name---
 string content bellow to next key or end of file

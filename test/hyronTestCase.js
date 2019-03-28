@@ -1,28 +1,28 @@
-const hyron = require('hyron');
+// const hyron = require('hyron');
 
-var stringTest = hyron.getInstance(8937);
+// var stringTest = hyron.getInstance(8937);
 
-class TestCase {
-    static requestConfig(){
-        return {
-            getString : "get"
-        }
-    }
+// class TestCase {
+//     static requestConfig(){
+//         return {
+//             getString : "get"
+//         }
+//     }
 
-    getString(){
-        var data = this.$stringer.get("var_2", {
-            name: "thang"
-        });
+//     getString(){
+//         var data = this.$stringer.get("var_2", {
+//             name: "thang"
+//         });
 
-        console.log(">"+data);
-        return data;
-    }
-}
+//         console.log(">"+data);
+//         return data;
+//     }
+// }
 
-stringTest.enableServices({
-    "test":TestCase
-})
+// stringTest.enableServices({
+//     "test":TestCase
+// })
 
-stringTest.startServer();
+// stringTest.startServer();
 
-module.exports = stringTest;
+// module.exports = stringTest;

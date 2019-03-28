@@ -35,7 +35,7 @@ declare class Stringer {
      * ### **params**
      * - **lang** ( string ) : language code, it should be 2 digits. Example : en -> english, vi -> vietnamese. This code need coincides with the declared file in the strings directory
      */
-    setLanguage(lang: string) : void;
+    setLanguage(lang: string): void;
 }
 
 export = Stringer;

@@ -10,17 +10,18 @@ describe("application program interface", () => {
         var res = instance.get("var_2", {
             name: "thang"
         });
+        console.log(res);
         chai.should().not.equal(res, null);
     })
 
-    it("hyron get()", ()=>{
-        var app = hyronTestInstance.app;
-        chai.request(app)
-        .get("/test/get-string")
-        .end((err, res)=>{
-            chai.should().not.equal(res, null);
-        })
-    })
+    // it("hyron get()", ()=>{
+    //     var app = hyronTestInstance.app;
+    //     chai.request(app)
+    //     .get("/test/get-string")
+    //     .end((err, res)=>{
+    //         chai.should().not.equal(res, null);
+    //     })
+    // })
 
 })
 
