@@ -1,19 +1,19 @@
+
 [![Build status](https://ci.appveyor.com/api/projects/status/scqq323ay7cilq79?svg=true)](https://ci.appveyor.com/project/thangdjw/plugins-stringer-cjax2)
 ![Gitter](https://img.shields.io/gitter/room/hyron-group/community.svg)
 ![npm](https://img.shields.io/npm/dm/@hyron/stringer.svg)
 
 
-Stringer is a lightweight library, used to separate string into string file ``.str``
-It makes your source code cleaner, reusable in many files, and supports multiple languages.
+Stringer is lightweight library to separate ``string`` value from ``code``
 
 ## Feature
 
-- Human read-able syntax.
-- **Key** - **Value** based.
-- Optimized for storing string in text files.
-- Support bind var or load another var.
-- Support comment with syntax: **# comment content**.
-- Support [Hyron Framework](https://www.npmjs.com/package/hyron) as a global fontware plugins.
+- Support for multi-language
+- Human read-able syntax
+- Support Internal Reference
+- Support Passing Varable
+- Support for Comment
+- Support for [Hyron Framework](https://www.npmjs.com/package/hyron)
 
 
 # Syntax
@@ -36,7 +36,7 @@ multi
 line
 content
 
----self_reference---
+---internal_reference---
 <#var_1>
 
 ---var_loadable---
@@ -48,7 +48,6 @@ content
 ## Step 1: Installation
 
 By **NPM**:
-
 ```shell
 npm i @hyron/stringer
 ```
@@ -61,18 +60,26 @@ yarn add @hyron/stringer
 
 ## Step 2: Declare string values
 
-By default, **stringer** will loads strings from files with **.str** extension in **./strings** directory. And you should use two characters of the language as the filename. _(e.g: vi.str)_
+By default, **stringer** will loads strings from files with **.str** extension in **./strings** directory.
 
-Beside, **stringer** also expects you to profile the fallback file **default.str**.
+You should use [language code](https://www.wikiwand.com/en/Language_code) to named file. _(e.g: vi.str for vietnamese)_
 
-**Stringer** also has multi languages support, you could use it to store translated strings. Here is an example of strings directory:
+The stringer will load the file default.str by default, unless you [set the default language]()
+
+Here is an example of strings directory:
 
 ```
-./strings
+/strings
   ├── default.str
   ├── en.str
-  ├── fr.str
+  ├── vi.str
   ...
+```
+
+strings/default.str
+```str
+---say_my_name---
+Hi, <?myName>
 ```
 
 ## Step 3: Use stringer
@@ -82,26 +89,25 @@ Beside, **stringer** also expects you to profile the fallback file **default.str
 ```js
 const Stringer = require("@hyron/stringer");
 var stringer = new Stringer();
-var printMe = stringer.get("print_my_name", {
-    myName : "thangdjw"
+
+var printMe = stringer.get("say_my_name", {
+    myName : "thangphung"
 });
+
 console.log(printMe);
-// TODO: Output here
+// Hi, thangphung
 ```
 
-### You are using [Hyron framework](https://www.npmjs.com/package/hyron)?
 
-> **stringer** is a `fontware` used to load strings from the 'this' variable.
+### For [Hyron framework](https://www.npmjs.com/package/hyron)
 
-With **Hyron framework**, you don't need to explicitly load it.
-After install, **Hyron framework** will tries to detect and loads string files from **./strings** directory, and you can used stringer in every declared services.
+You can use stringer as a plugins in the hyron framework. You just need to install it to use.
 
-To get string value, you can use follow syntax:
+Stringer can be access by ``this.$stringer``
 
 ```js
-your_method(){
-    // do something useful
-    var appName = this.$stringer.get('key_name');
+sayMyName(){
+    return this.$stringer.get('say_my_name');
 }
 ```
 
@@ -109,11 +115,11 @@ your_method(){
 
 > ## **setLanguage** ( lang ): void
 
-Set default language. If lang is null, string will be read from **default.json** file. Otherwise, it will be read from **<lang>.str**
+Set default language. If lang is null, string will be read from **default.json** file. Otherwise, it will be read from **< lang >.str**
 
 ### **params**
 
-- `lang` _(string)_: language code, it should be exactly two letters. Example: en -> english, vi -> vietnamese. You should ensure that the used language are well reclared in **./strings** directory. For more conventional, you should use country codes defined by *ISO 3166-1 alpha-2*.
+- **lang** ( string ) : language code, that was used to named file in strings/ directory
 
 > ##  **set** ( key, val, lang? ) : void
 
@@ -121,9 +127,9 @@ Temporarily set string in runtime. The original file is left intact.
 
 ### **params**
 
-- `key` _(string)_: string key, declared in `.str` file.
-- `val` _(string)_: parameters passed in string value.
-- `lang` _(string)_: language code, declared in string files.
+- **key** ( string ) : string key, declared in `.str` file.
+- **val** ( string ) : parameters passed in string value.
+- **lang** ( string ) : language code, declared in string files.
 
 > ## **get** (key, args?): string
 
@@ -138,19 +144,19 @@ Stringer support external reference represent with syntax : `<?var-name>`. Strin
 
 ### **params**
 
-- `key` _(string)_: string args key name.
-- `args` _(object)_: argument to fill into string.
+- **key** ( string ) : string args key name.
+- **args** ( object ) : argument to fill into string.
 
-### **Return value**
+### **return**
 
-- _string_: a string that have been filled by args
+- **string** : a string that have been filled by args
 
 # Examples
 
-Given **./strings/default.str** file:
+**strings/default.str**
 
 ```
----webside---
+---website---
 http:\/\/hyron.com
 
 // used to send to user
@@ -166,7 +172,7 @@ We will constantly improve the quality of our services, to bring satisfaction to
 In **main.js** you could use:
 
 ```js
-var message = this.$stringer.get("email_content", {
+var message = stringer.get("email_content", {
     signature: "THANGPHUNG",
     client_name: "Alex"
 });
